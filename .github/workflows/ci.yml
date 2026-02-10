@@ -1,38 +1,37 @@
 name: Build and Push Docker Image to ECR
 
 on:
-push:
-branches:
-- master
+  push:
+    branches:
+      - master
 
 jobs:
-build-and-push:
-runs-on: ubuntu-latest
+  build-and-push:
+    runs-on: ubuntu-latest
 
-steps:
-- name: Checkout code
-uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-- name: Configure AWS credentials
-uses: aws-actions/configure-aws-credentials@v4
-with:
-aws-access-key-id: YOUR_ACCESS_KEY_ID_HERE
-aws-secret-access-key: YOUR_SECRET_ACCESS_KEY_HERE
-aws-region: us-east-1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: AKIAW5FEGFFIJXD7INX4
+          aws-secret-access-key: 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 
+          aws-region: us-east-1
 
-- name: Login to Amazon ECR
-uses: aws-actions/amazon-ecr-login@v2
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
 
-- name: Build Docker image
-run: |
-docker build -t my-app-ecr-repo .
+      - name: Build Docker image
+        run: |
+          docker build -t my-app-ecr-repo .
 
-- name: Tag Docker image
-run: |
-docker tag my-app-ecr-repo:latest \
-474938222928.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
+      - name: Tag Docker image
+        run: |
+          docker tag my-app-ecr-repo:latest \
+          474938222928.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
 
-- name: Push Docker image to ECR
-run: |
-docker push \
-474938222928.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
+      - name: Push Docker image to ECR
+        run: |
+          docker push 474938222928.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
