@@ -37,7 +37,7 @@ jobs:
           docker push 375864262524.dkr.ecr.us-east-1.amazonaws.com/my-claver-app-ecr-repo:latest
           
              - name: Force new ECS deployment
-        run: |
+                  run: |
           aws ecs update-service \
             --cluster my-claver-app-test-cluster \
             --service my-app-service \
