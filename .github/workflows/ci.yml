@@ -25,16 +25,16 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t my-claver-app-ecr-repo .
+          docker build -t my-app-ecr-repo .
 
       - name: Tag Docker image
         run: |
-          docker tag my-claver-app-ecr-repo:latest \
-          375864262524.dkr.ecr.us-east-1.amazonaws.com/my-claver-app-ecr-repo:latest
+          docker tag my-app-ecr-repo:latest \
+          375864262524.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
 
       - name: Push Docker image to ECR
         run: |
-          docker push 375864262524.dkr.ecr.us-east-1.amazonaws.com/my-claver-app-ecr-repo:latest
+          docker push 375864262524.dkr.ecr.us-east-1.amazonaws.com/my-app-ecr-repo:latest
           
              - name: Force new ECS deployment
                   run: |
